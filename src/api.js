@@ -10,19 +10,19 @@ export const fetchMovieByName = async (name) => {
 			query: name
 		}
 	});
-	return resp.results;
-	// resp.results - array of objects
+	return resp.data.results;
+	// resp.data.results - array of objects
 };
 
 
-export const fetchTrendMovies = async () => {
+export const fetchTrendingMovies = async () => {
 	const resp = await axios.get('trending/movie/day', {
 		params: {
 			api_key: API_KEY,
 		}
 	});
-	return resp.results;
-	// resp.results - array of objects
+	return resp.data.results;
+	// resp.data.results - array of objects
 };
 
 export const fetchMovieDetails = async (movieId) => {
@@ -31,8 +31,8 @@ export const fetchMovieDetails = async (movieId) => {
 			api_key: API_KEY,
 		}
 	});
-	return resp;
-	// resp - object
+	return resp.data;
+	// resp.data - object
 };
 
 export const fetchMovieReviews = async (movieId) => {
@@ -41,8 +41,8 @@ export const fetchMovieReviews = async (movieId) => {
 			api_key: API_KEY,
 		}
 	});
-	return resp.results;
-	// resp.results - array of objects
+	return resp.data.results;
+	// resp.data.results - array of objects
 };
 
 
