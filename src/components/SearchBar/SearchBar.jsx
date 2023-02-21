@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { BsSearch } from 'react-icons/bs';
+import {
+  ButttonBgImg,
+  SearchForm,
+  SearchFormButton,
+  SearchFormButtonLabel,
+  SearchFormInput,
+} from './SearchBar.styled';
 
 const Searchbar = ({ onSubmit }) => {
   const handleSubmit = e => {
@@ -12,23 +18,21 @@ const Searchbar = ({ onSubmit }) => {
     onSubmit(request.value);
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="request"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movie"
-        />
-        <button>
-          <span>
-            <BsSearch />
-          </span>
-          <span>Search</span>
-        </button>
-      </form>
-    </div>
+    <SearchForm onSubmit={handleSubmit}>
+      <SearchFormInput
+        type="text"
+        name="request"
+        autoComplete="off"
+        autoFocus
+        placeholder="Search movie"
+      />
+      <SearchFormButton>
+        <span>
+          <ButttonBgImg />
+        </span>
+        <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+      </SearchFormButton>
+    </SearchForm>
   );
 };
 
