@@ -1,6 +1,6 @@
 import { fetchTrendingMovies } from 'api';
 import Title from 'components/Title';
-import TrendingMovieItem from 'components/TrendingMovieItem';
+import MovieItem from 'components/MovieItem';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
         const movies = await fetchTrendingMovies();
         setTrendingMovies(movies);
       } catch (error) {
-        setError(error);
+        setError('Sorry, something went wrong. Please, try again.');
       } finally {
         setIsLoading(false);
       }
@@ -29,7 +29,7 @@ const Home = () => {
       <ul>
         {trendingMovies.map(movie => {
           const { title, id } = movie;
-          return <TrendingMovieItem key={id} id={id} title={title} />;
+          return <MovieItem key={id} id={id} title={title} />;
         })}
       </ul>
       {isLoading && <div>Loading...</div>}

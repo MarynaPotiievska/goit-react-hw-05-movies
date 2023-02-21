@@ -36,7 +36,7 @@ const Movies = () => {
   }, [request]);
 
   return (
-    <div>
+    <main>
       <SearchBar onSubmit={handleSubmit} />
       <ul>
         {movies.map(movie => {
@@ -46,7 +46,7 @@ const Movies = () => {
       </ul>
       {isLoading && <div>Loading...</div>}
       {error && <div>{error}</div>}
-    </div>
+    </main>
   );
 };
 

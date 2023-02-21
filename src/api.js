@@ -25,8 +25,8 @@ export const fetchTrendingMovies = async () => {
 	// resp.data.results - array of objects
 };
 
-export const fetchMovieDetails = async (movieId) => {
-	const resp = await axios.get(`movie/${movieId}`, {
+export const fetchMovieDetails = async (id) => {
+	const resp = await axios.get(`movie/${id}`, {
 		params: {
 			api_key: API_KEY,
 		}
