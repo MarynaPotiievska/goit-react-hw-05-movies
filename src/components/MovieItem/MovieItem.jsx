@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { FilmLink } from './TrendingMovieItem.styled';
+import { FilmLink } from './MovieItem.styled';
 
-const TrendingMovieItem = ({ id, title }) => {
+const MovieItem = ({ id, title }) => {
   return (
     <li movieId={id}>
       <FilmLink to="/movies/:movieId">{title}</FilmLink>
@@ -9,9 +9,9 @@ const TrendingMovieItem = ({ id, title }) => {
   );
 };
 
-TrendingMovieItem.propTypes = {
+MovieItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default TrendingMovieItem;
+export default MovieItem;
