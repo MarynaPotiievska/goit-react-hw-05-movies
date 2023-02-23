@@ -35,16 +35,18 @@ const MovieCard = ({ movieDetails }) => {
 };
 
 MovieCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
-  poster_path: PropTypes.string.isRequired,
-  vote_average: PropTypes.number.isRequired,
-  overview: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  movieDetails: PropTypes.shape({
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    overview: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default MovieCard;
