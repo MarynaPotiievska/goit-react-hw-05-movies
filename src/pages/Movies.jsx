@@ -4,22 +4,25 @@ import { fetchMovieByName } from 'api';
 
 import SearchBar from 'components/SearchBar';
 import MovieItem from 'components/MovieItem';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [request, setRequest] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const movieTitle = searchParams.get('request');
+
   const handleSubmit = request => {
-    setRequest(request);
+    setSearchParams({ request });
   };
 
   useEffect(() => {
-    async function searchingMovies(request) {
+    async function searchingMovies(movieTitle) {
       try {
         setIsLoading(true);
-        const searchedMovies = await fetchMovieByName(request);
+        const searchedMovies = await fetchMovieByName(movieTitle);
         setMovies(searchedMovies);
       } catch (error) {
         setError('Sorry, something went wrong. Please, try again.');
@@ -28,12 +31,12 @@ const Movies = () => {
       }
     }
 
-    if (!request) {
+    if (!movieTitle) {
       return;
     } else {
-      searchingMovies(request);
+      searchingMovies(movieTitle);
     }
-  }, [request]);
+  }, [movieTitle]);
 
   return (
     <main>

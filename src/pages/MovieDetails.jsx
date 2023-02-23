@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
+import { useParams, useLocation } from 'react-router-dom';
 
 import { fetchMovieDetails } from 'api';
 import MovieCard from 'components/MovieCard';
+import BackLink from 'components/BackLink';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({});
@@ -11,12 +11,17 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { movieId } = useParams();
+  // console.log(movieId);
+  const location = useLocation();
+  const backLinkHref = location.state?.from;
 
   useEffect(() => {
+    console.log(movieId);
     async function gettingMovieDetails() {
       try {
         setIsLoading(true);
         const resp = await fetchMovieDetails(movieId);
+        console.log(resp);
         setMovieDetails(resp);
       } catch (error) {
         setError('Sorry, something went wrong. Please, try again.');
@@ -29,10 +34,7 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <p>
-        <HiOutlineArrowNarrowLeft />
-        <span>Go back</span>
-      </p>
+      <BackLink location={backLinkHref} />
       <MovieCard movieDetails={movieDetails} />
       {isLoading && <div>Loading...</div>}
       {error && <div>{error}</div>}
