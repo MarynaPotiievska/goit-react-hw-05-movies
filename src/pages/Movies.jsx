@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { fetchMovieByName } from 'api';
 
 import SearchBar from 'components/SearchBar';
-import MovieItem from 'components/MovieItem';
+import MovieItem from 'components/MovieList';
 import { useSearchParams } from 'react-router-dom';
+import MovieList from 'components/MovieList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -41,12 +42,7 @@ const Movies = () => {
   return (
     <main>
       <SearchBar onSubmit={handleSubmit} />
-      <ul>
-        {movies.map(movie => {
-          const { title, id } = movie;
-          return <MovieItem key={id} id={id} title={title} />;
-        })}
-      </ul>
+      {movies.length > 0 && <MovieList movies={movies} />}
       {isLoading && <div>Loading...</div>}
       {error && <div>{error}</div>}
     </main>
