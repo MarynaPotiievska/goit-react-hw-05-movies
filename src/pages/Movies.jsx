@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { fetchMovieByName } from 'api';
 
 import SearchBar from 'components/SearchBar';
-import MovieItem from 'components/MovieList';
-import { useSearchParams } from 'react-router-dom';
 import MovieList from 'components/MovieList';
 
 const Movies = () => {
