@@ -27,21 +27,22 @@ const Cast = () => {
 
   return (
     <ul>
-      {cast.map(({ name, profile_path, cast_id, character }) => (
-        <CharacterCard key={cast_id}>
-          <Photo
-            src={
-              `https://www.themoviedb.org/t/p/w500/${profile_path}` ||
-              'https://via.placeholder.com/100x50.jpg/A3A3A3?Text=There+is+no+photo'
-            }
-            alt={name}
-          />
-          <div>
-            <ActorName>{name}</ActorName>
-            <Character>Character: {character}</Character>
-          </div>
-        </CharacterCard>
-      ))}
+      {cast &&
+        cast.map(({ name, profile_path, cast_id, character }) => (
+          <CharacterCard key={cast_id}>
+            <Photo
+              src={
+                `https://www.themoviedb.org/t/p/w500/${profile_path}` ||
+                'https://via.placeholder.com/100x50.jpg/A3A3A3?Text=There+is+no+photo'
+              }
+              alt={name}
+            />
+            <div>
+              <ActorName>{name}</ActorName>
+              <Character>Character: {character}</Character>
+            </div>
+          </CharacterCard>
+        ))}
       {isLoading && <li>Loading</li>}
       {error && <li>{error}</li>}
     </ul>

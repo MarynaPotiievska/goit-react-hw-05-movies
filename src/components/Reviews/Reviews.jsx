@@ -27,14 +27,18 @@ const Reviews = () => {
 
   return (
     <ul>
-      {reviews.map(({ author, content, id }) => (
-        <ReviewCard key={id}>
-          <Author>
-            Author: <AuthorName>{author}</AuthorName>
-          </Author>
-          <p>{content}</p>
-        </ReviewCard>
-      ))}
+      {reviews && reviews.length > 0 ? (
+        reviews.map(({ author, content, id }) => (
+          <ReviewCard key={id}>
+            <Author>
+              Author: <AuthorName>{author}</AuthorName>
+            </Author>
+            <p>{content}</p>
+          </ReviewCard>
+        ))
+      ) : (
+        <li>There are no reviews yet</li>
+      )}
       {isLoading && <li>Loading...</li>}
       {error && <li>{error}</li>}
     </ul>

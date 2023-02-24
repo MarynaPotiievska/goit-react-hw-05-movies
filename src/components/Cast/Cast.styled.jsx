@@ -9,7 +9,7 @@ export const CharacterCard = styled.li`
 export const Photo = styled.img`
   display: block;
   width: 50px;
-  height: 100px;
+  height: 68px;
 `;
 
 export const ActorName = styled.h3`
