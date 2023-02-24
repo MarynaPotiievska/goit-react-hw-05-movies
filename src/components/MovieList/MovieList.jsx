@@ -1,8 +1,8 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { FilmLink } from './MovieList.styled';
 
-const MovieItem = ({ movies }) => {
+const MovieList = ({ movies }) => {
   const location = useLocation();
 
   return (
@@ -18,9 +18,14 @@ const MovieItem = ({ movies }) => {
   );
 };
 
-// MovieItem.propTypes = {
-//   // id: PropTypes.number.isRequired,
-//   // title: PropTypes.string.isRequired,
-// };
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      name: PropTypes.string,
+      id: PropTypes.number.isRequired,
+    })
+  ),
+};
 
-export default MovieItem;
+export default MovieList;
