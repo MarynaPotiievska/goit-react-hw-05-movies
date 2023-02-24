@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
 
 import Title from 'components/Title';
+import {
+  MovieCardBox,
+  MovieInfoBox,
+  MovieInfoTitle,
+  MovieScoreBox,
+  Poster,
+} from './MovieCard.styled';
 
 const MovieCard = ({ movieDetails }) => {
   const { title, release_date, poster_path, vote_average, overview, genres } =
@@ -10,27 +17,29 @@ const MovieCard = ({ movieDetails }) => {
   const genresArr = genres.map(genre => genre.name).join(' ');
 
   return (
-    <section>
-      <img
-        src={`https://www.themoviedb.org/t/p/w500/${poster_path}`}
+    <MovieCardBox>
+      <Poster
+        src={
+          `https://www.themoviedb.org/t/p/w500/${poster_path}` ||
+          'https://via.placeholder.com/300x200.jpg/A3A3A3?Text=There+is+no+poster'
+        }
         alt={title}
       />
       <div>
         <Title title={`${title} (${releaseYear})`} />
-        <p>
-          <span>User Score: </span>
-          <span>{vote_average}</span>
-        </p>
-        <div>
-          <h2>Overview</h2>
+        <MovieScoreBox>
+          {`User Score: ${Math.round(vote_average * 10)}%`}
+        </MovieScoreBox>
+        <MovieInfoBox>
+          <MovieInfoTitle>Overview</MovieInfoTitle>
           <p>{overview}</p>
-        </div>
-        <div>
-          <h2>Genres</h2>
+        </MovieInfoBox>
+        <MovieInfoBox>
+          <MovieInfoTitle>Genres</MovieInfoTitle>
           <p>{genresArr}</p>
-        </div>
+        </MovieInfoBox>
       </div>
-    </section>
+    </MovieCardBox>
   );
 };
 
@@ -38,14 +47,14 @@ MovieCard.propTypes = {
   movieDetails: PropTypes.shape({
     genres: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
+        name: PropTypes.string,
       })
-    ).isRequired,
-    overview: PropTypes.string.isRequired,
-    poster_path: PropTypes.string.isRequired,
-    release_date: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    vote_average: PropTypes.number.isRequired,
+    ),
+    overview: PropTypes.string,
+    poster_path: PropTypes.string,
+    release_date: PropTypes.string,
+    title: PropTypes.string,
+    vote_average: PropTypes.number,
   }).isRequired,
 };
 
