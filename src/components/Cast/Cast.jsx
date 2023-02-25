@@ -32,8 +32,9 @@ const Cast = () => {
           <CharacterCard key={cast_id}>
             <Photo
               src={
-                `https://www.themoviedb.org/t/p/w500/${profile_path}` ||
-                'https://via.placeholder.com/100x50.jpg/A3A3A3?Text=There+is+no+photo'
+                profile_path
+                  ? `https://www.themoviedb.org/t/p/w500/${profile_path}`
+                  : 'https://via.placeholder.com/100x50.jpg/A3A3A3?Text=There+is+no+photo'
               }
               alt={name}
             />

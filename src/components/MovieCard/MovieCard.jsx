@@ -20,8 +20,9 @@ const MovieCard = ({ movieDetails }) => {
     <MovieCardBox>
       <Poster
         src={
-          `https://www.themoviedb.org/t/p/w500/${poster_path}` ||
-          'https://via.placeholder.com/300x200.jpg/A3A3A3?Text=There+is+no+poster'
+          poster_path
+            ? `https://www.themoviedb.org/t/p/w500/${poster_path}`
+            : 'https://via.placeholder.com/300x200.jpg/A3A3A3?Text=There+is+no+poster'
         }
         alt={title}
       />
